@@ -8,7 +8,17 @@ relative_permalinks: true
 # Setup
 title:               'Denis M.'
 tagline:             'Stuff about things'
-description:         ''
+description:         '
+
+<div>Contact links: 
+    <a href="https://github.com/denmil">DB</a>
+    <a href="https://twitter.com/___dns"><i class="fa fa-twitter social-icons"></i></a>
+    <a href=""><i class="fa fa-envelope social-icons"></i></a>
+    <a href="https://github.com/denmil"><i class="fa fa-github social-icons"></i></a>
+</div>
+
+'
+
 url:                 http://denmil.github.io
 baseurl:             ''
 paginate:            5

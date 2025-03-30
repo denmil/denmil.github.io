@@ -1,8 +1,536 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Under construction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Denis Milošević, PhD - ML Research and Production AI Systems">
+    <title>Denis Milošević, PhD - Research Scientist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        /* Light mode colors (default) */
+        :root {
+            /* Base Colors */
+            --color-bg-primary: rgb(255, 255, 255);
+            --color-bg-secondary: rgb(250, 246, 241);  /* For hero panel */
+            --color-bg-tertiary: rgb(251, 248, 243);
+            --color-box-bg: rgb(255, 255, 255);       /* New variable for research boxes */
+            
+            /* Text Colors */
+            --color-text-primary: rgb(107, 87, 68);
+            --color-text-secondary: rgb(75, 85, 99);
+            --color-text-accent: rgb(156, 139, 123);
+            
+            /* Interactive Elements */
+            --color-hover: rgb(250, 246, 242);
+            --color-hover-text: rgb(139, 107, 79);
+            
+            /* Decorative Elements */
+            --color-dots: rgba(179, 159, 140, 0.12);
+            --color-line: rgb(156, 139, 123);
+            --color-separator: rgb(231, 225, 219);
+            --color-border: rgb(229, 217, 201);
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(156, 139, 123, 0.1);
+            --shadow-md: 0 4px 8px rgba(156, 139, 123, 0.15);
+            --shadow-lg: 0 6px 12px rgba(156, 139, 123, 0.2);
+            
+            /* Research Box Specific */
+            --box-border-default: rgb(179, 159, 140);
+            --box-border-hover: rgb(139, 107, 79);
+        }
+
+        /* Dark mode class-based override */
+        [data-theme="dark"] {
+            /* Base Colors */
+            --color-bg-primary: rgb(31, 24, 21);
+            --color-bg-secondary: rgb(42, 33, 29);
+            --color-bg-tertiary: rgb(38, 29, 26);
+            --color-box-bg: rgb(42, 33, 29);       /* Dark mode research box background */
+            
+            /* Text Colors */
+            --color-text-primary: rgb(196, 167, 141);
+            --color-text-secondary: rgb(196, 181, 168);
+            --color-text-accent: rgb(139, 115, 85);
+            
+            /* Interactive Elements */
+            --color-hover: rgb(53, 43, 38);
+            --color-hover-text: rgb(240, 235, 230);
+            
+            /* Decorative Elements */
+            --color-dots: rgb(54, 43, 38);
+            --color-line: rgb(53, 43, 38);
+            --color-separator: rgb(65, 53, 41);
+            --color-border: rgb(139, 115, 85);
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.3);
+            
+            /* Research Box Specific */
+            --box-border-default: rgb(53, 43, 38);
+            --box-border-hover: rgb(196, 167, 141);
+        }
+                
+        .grid-pattern {
+            background-color: var(--color-bg-secondary);
+            background-image: radial-gradient(circle, var(--color-dots) 1.582px, transparent 1.582px);
+            background-size: 24px 24px;
+        }
+        
+        .research-gradient {
+            background: var(--color-bg-primary);
+        }
+        
+        .hover-lift {
+            @apply transition-all duration-200 ease-in-out;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .accent-border-left {
+            border-left: 3px solid var(--box-border-default);
+            @apply transition-colors duration-200;
+        }
+        
+        .accent-border-left:hover {
+            border-left-color: var(--box-border-hover);
+            background-color: var(--color-hover);
+        }
+
+        .paper-link {
+            background-color: var(--color-bg-tertiary);
+            transition: transform 200ms ease-in-out;
+        }
+        
+        .paper-link:hover {
+            background-color: var(--color-hover);
+        }
+
+        .profile-image-container {
+            aspect-ratio: 1 / 1;
+        }
+
+        .section-separator {
+            border-bottom: 2px dotted var(--color-separator);
+            opacity: 1;
+        }
+
+        .research-box {
+            box-shadow: var(--shadow-sm);
+            background-color: var(--color-box-bg);
+            transition: transform 200ms ease-in-out;
+        }
+
+        .research-box:hover {
+            box-shadow: var(--shadow-md);
+            background-color: var(--color-hover);
+        }
+
+        .nav-link {
+            @apply transition-colors duration-200;
+            color: var(--color-text-secondary);
+        }
+
+        .nav-link:hover {
+            color: var(--color-text-primary);
+        }
+
+        /* Theme toggle button styles */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            left: auto;
+            right: 2rem;
+            z-index: 50;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-color: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.2s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .theme-toggle svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--color-text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: none;
+            }
+            
+            .mobile-menu.active {
+                display: block;
+            }
+        }
+    </style>
 </head>
-<body>
-<p>This site is under construction. It should go live soon.</p>
+<body style="background-color: var(--color-bg-primary)" data-theme="light">
+    <!-- Navigation -->
+    <nav class="fixed w-full backdrop-filter backdrop-blur z-50 border-b" 
+         style="background-color: var(--color-bg-primary); border-color: var(--color-border)"
+         role="navigation">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex justify-between items-center h-16 px-4 sm:px-8">
+                <div class="text-xl font-mono" style="color: var(--color-text-primary)">
+                    denmil/
+                </div>
+                <button class="md:hidden p-2 rounded-lg" 
+                        style="hover:background-color: var(--color-bg-secondary)" 
+                        aria-label="Toggle navigation menu" 
+                        aria-expanded="false">
+                    <svg class="w-6 h-6" style="color: var(--color-text-secondary)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+                <div class="hidden md:flex md:space-x-12">
+                    <a href="https://denmil.substack.com" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="nav-link"
+                       aria-label="Blog (opens in new window)">Blog</a>
+                    <a href="#papers" 
+                       class="nav-link">Peer-reviewed publications</a>
+                    <a href="https://denmil.substack.com/p/portfolio" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="nav-link"
+                       aria-label="Portfolio (opens in new window)">Portfolio</a>
+                    <a href="#contact" 
+                       class="nav-link">Contact</a>
+                </div>
+            </div>
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu md:hidden px-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="https://denmil.substack.com" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="nav-link py-2"
+                       aria-label="Blog (opens in new window)">Blog</a>
+                    <a href="#papers" 
+                       class="nav-link py-2">Peer-reviewed publications</a>
+                    <a href="https://denmil.substack.com/p/portfolio" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="nav-link py-2"
+                       aria-label="Portfolio (opens in new window)">Portfolio</a>
+                    <a href="#contact" 
+                       class="nav-link py-2">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="section pt-32 pb-20 grid-pattern" role="banner">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-12 gap-4 sm:gap-8">
+                <div class="col-span-12 md:col-span-9 space-y-8">
+                    <div class="space-y-4">
+                        <h1 class="text-4xl sm:text-5xl font-light" style="color: var(--color-text-primary)">Denis Milošević, PhD</h1>
+                        <p class="text-xl" style="color: var(--color-text-secondary)">Bridging ML research advances and production-scale AI systems</p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <div class="h-px w-12 mt-3" style="background-color: var(--color-text-accent)"></div>
+                        <p style="color: var(--color-text-secondary)">Research scientist and ML engineer specializing in large-scale AI systems, with expertise in computer vision and multimodal architectures, data-intensive applications, and distributed computing. Drawing from doctoral work in optimizing computer vision models for medical applications, now architecting end-to-end ML solutions - from data strategy to production systems - for complex real-world problems through systematic evaluation and empirical validation.</p>
+                    </div>
+                </div>
+                <div class="col-span-12 md:col-span-3">
+                    <div class="relative profile-image-container">
+                        <img src="profile-image.png" 
+                             alt="Profile image" 
+                             class="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg">
+                        <div class="absolute -inset-4 rounded-lg -z-10" style="border: 1px solid var(--color-border)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section py-16 research-gradient" role="region" aria-labelledby="research-heading">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-12 gap-8 lg:gap-12">
+                <div class="col-span-12 md:col-span-4">
+                    <h2 id="research-heading" class="text-3xl font-light mb-8" style="color: var(--color-text-primary)">Research Focus</h2>
+                    <div class="h-px w-12 mb-8" style="background-color: var(--color-text-accent)"></div>
+                    <p style="color: var(--color-text-secondary)">Drawing from research experience in medical computer vision, I develop robust ML architectures and systems that balance innovation with practical reliability.</p>
+                </div>
+                <div class="col-span-12 md:col-span-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="p-6 rounded-lg research-box accent-border-left">
+                            <h3 class="text-xl font-medium mb-4" style="color: var(--color-text-primary)">Vision & Multimodal ML</h3>
+                            <ul class="space-y-2" style="color: var(--color-text-secondary)" role="list">
+                                <li>• Vision architectures & optimization</li>
+                                <li>• Cross-modal understanding</li>
+                                <li>• Efficient model design & validation</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 rounded-lg research-box accent-border-left">
+                            <h3 class="text-xl font-medium mb-4" style="color: var(--color-text-primary)">Generative AI</h3>
+                            <ul class="space-y-2" style="color: var(--color-text-secondary)" role="list">
+                                <li>• Generative model architectures</li>
+                                <li>• Cross-modal generation</li>
+                                <li>• Task-specific model adaptation</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 rounded-lg research-box accent-border-left">
+                            <h3 class="text-xl font-medium mb-4" style="color: var(--color-text-primary)">Research-Driven Engineering</h3>
+                            <ul class="space-y-2" style="color: var(--color-text-secondary)" role="list">
+                                <li>• Systematic evaluation & metrics</li>
+                                <li>• Data-backed design decisions</li>
+                                <li>• Performance optimization</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 rounded-lg research-box accent-border-left">
+                            <h3 class="text-xl font-medium mb-4" style="color: var(--color-text-primary)">ML Systems Architecture</h3>
+                            <ul class="space-y-2" style="color: var(--color-text-secondary)" role="list">
+                                <li>• End-to-end system design</li>
+                                <li>• Data annotation pipelines</li>
+                                <li>• Scalable deployment solutions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Separator -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-8">
+        <div class="section-separator"></div>
+    </div>
+
+    <!-- Papers Section -->
+    <section id="papers" class="section py-16" role="region" aria-labelledby="papers-heading">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-12 gap-8 lg:gap-12">
+                <div class="col-span-12 md:col-span-4">
+                    <h2 id="papers-heading" class="text-3xl font-light" style="color: var(--color-text-primary)">Selected Papers</h2>
+                    <div class="h-px w-12 my-8" style="background-color: var(--color-text-accent)"></div>
+                    <p style="color: var(--color-text-secondary)">Some of my publications in conferences and journals that I'd like to highlight.</p>
+                    <a href="https://scholar.google.com/citations?user=YDJNH6IAAAAJ" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="inline-block mt-4 transition-colors duration-200"
+                       style="color: var(--color-text-primary)"
+                       aria-label="View all papers on Google Scholar (opens in new window)">
+                        View all papers →
+                    </a>
+                </div>
+                <div class="col-span-12 md:col-span-8 space-y-8">
+                    <a href="https://www.sciencedirect.com/science/article/abs/pii/S095741742101383X" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="block p-8 rounded-lg paper-link"
+                       aria-label="Read paper: ((PH22))">
+                        <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
+                            <h3 class="text-xl font-medium" style="color: var(--color-text-primary)">Automated Estimation of Chronological Age from Panoramic Dental X-ray Images Using Deep Learning</h3>
+                            <span class="text-sm mt-2 sm:mt-0" style="color: var(--color-text-accent)">2022</span>
+                        </div>
+                        <p class="mb-2" style="color: var(--color-text-secondary)"><i>Systems with Applications (Impact Factor: 7.5)</i></p>
+                        <p style="color: var(--color-text-secondary)">This paper introduces a novel deep learning approach for automated age estimation from panoramic dental X-rays, achieving state-of-the-art accuracy for adult subjects with a median error of just 2.95 years, significantly outperforming established methods, most of which require manual measurements and require no dental damage or alterations.</p>
+                    </a>
+                    <a href="https://ieeexplore.ieee.org/abstract/document/9813689" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="block p-8 rounded-lg paper-link"
+                       aria-label="Read paper: ((PH23))">
+                        <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
+                            <h3 class="text-xl font-medium" style="color: var(--color-text-primary)">A Comprehensive Exploration of Neural Networks for Forensic Analysis of Adult Single Tooth X-ray Images</h3>
+                            <span class="text-sm mt-2 sm:mt-0" style="color: var(--color-text-accent)">2022</span>
+                        </div>
+                        <p class="mb-2" style="color: var(--color-text-secondary)"><i>IEEE Access (Impact Factor: 3.4)</i></p>
+                        <p style="color: var(--color-text-secondary)">This study presents a comprehensive exploration of deep learning for analyzing individual tooth X-ray images to perform three key forensic tasks - age estimation, sex assessment, and tooth type determination. By creating one of the largest datasets in literature (86,495 annotated teeth), the research resulted in automated models that achieve performance equal or better performance than current manual forensic methods, while being fully automated, and without requiring perfect dental specimens.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="projects" class="section py-20" style="background-color: var(--color-bg-secondary)" role="region" aria-labelledby="impact-heading">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
+            <h2 id="impact-heading" class="text-3xl font-light mb-16" style="color: var(--color-text-primary)">Impact & Experience</h2>
+            <dl class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-lg shadow-sm hover-lift" style="background-color: var(--color-bg-primary)">
+                    <dt class="text-2xl font-light mb-4" style="color: var(--color-text-primary)">Systems</dt>
+                    <dd style="color: var(--color-text-secondary)">Designed, built, and deployed ML systems processing tens of millions of queries weekly across computer vision and multimodal applications</dd>
+                </div>
+                <div class="p-8 rounded-lg shadow-sm hover-lift" style="background-color: var(--color-bg-primary)">
+                    <dt class="text-2xl font-light mb-4" style="color: var(--color-text-primary)">Research</dt>
+                    <dd style="color: var(--color-text-secondary)">Published peer-reviewed research advancing the state-of-the-art in medical computer vision systems and efficient ML architectures</dd>
+                </div>
+                <div class="p-8 rounded-lg shadow-sm hover-lift" style="background-color: var(--color-bg-primary)">
+                    <dt class="text-2xl font-light mb-4" style="color: var(--color-text-primary)">Scale</dt>
+                    <dd style="color: var(--color-text-secondary)">Spearheaded end-to-end ML initiatives from research proof-of-concepts to production systems serving non-trivial workloads</dd>
+                </div>
+            </dl>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section py-20" role="region" aria-labelledby="contact-heading">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-12 gap-8 lg:gap-12">
+                <div class="col-span-12 md:col-span-6">
+                    <h2 id="contact-heading" class="text-3xl font-light mb-4" style="color: var(--color-text-primary)">Contact</h2>
+                    <p style="color: var(--color-text-secondary)">Want to talk about making interesting stuff? Feel free to reach out! :D</p>
+                </div>
+                <div class="col-span-12 md:col-span-6">
+                    <h3 class="text-xl font-medium mb-4" style="color: var(--color-text-primary)">Connect</h3>
+                    <address class="space-y-2 not-italic" style="color: var(--color-text-secondary)">
+                        <p>
+                            <a href="https://www.linkedin.com/in/denmil/" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            class="nav-link"
+                            aria-label="LinkedIn profile (opens in new window)">LinkedIn</a>
+                        </p>
+                        <p>
+                            <a href="https://x.com/_denmil" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="nav-link"
+                               aria-label="Twitter profile (opens in new window)">@_denmil on 𝕏</a>
+                        </p>
+                        <!-- <p>contact [at] denmil.me</p> -->
+                    </address>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" aria-label="Toggle color theme">
+        <!-- Sun icon (shown in dark mode) -->
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display: none;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto px-4 sm:px-8 py-8" role="contentinfo">
+        <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+            <div class="text-sm" style="color: var(--color-text-secondary)">© <span id="year"></span> Denis Milošević, PhD</div>
+            <nav class="flex flex-wrap justify-center gap-4 sm:gap-6" aria-label="Footer navigation">
+                <a href="https://scholar.google.com/citations?user=YDJNH6IAAAAJ" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="nav-link"
+                   aria-label="Google Scholar profile (opens in new window)">Google Scholar</a>
+                <a href="https://github.com/denmil" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="nav-link"
+                   aria-label="GitHub profile (opens in new window)">GitHub</a>
+                <a href="https://www.linkedin.com/in/denmil/" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="nav-link"
+                   aria-label="LinkedIn profile (opens in new window)">LinkedIn</a>
+                <a href="https://x.com/_denmil" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="nav-link"
+                   aria-label="X/Twitter profile (opens in new window)">X / Twitter</a>
+                <a href="https://bsky.app/profile/denmil.me" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="nav-link"
+                   aria-label="Bluesky profile (opens in new window)">Bluesky</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        // Theme handling
+        const themeToggle = document.querySelector('.theme-toggle');
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+
+        // Function to set theme
+        function setTheme(isDark, savePreference = true) {
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            sunIcon.style.display = isDark ? 'block' : 'none';
+            moonIcon.style.display = isDark ? 'none' : 'block';
+            
+            // Only save to localStorage if we want to override system preference
+            if (savePreference) {
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            }
+        }
+
+        // Function to get system theme preference
+        function getSystemThemePreference() {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+
+        // Initialize theme
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                // User has a saved preference, use it
+                setTheme(savedTheme === 'dark');
+            } else {
+                // No saved preference, use system preference
+                setTheme(getSystemThemePreference(), false);
+            }
+        }
+
+        // Theme toggle click handler
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)')
+            .addEventListener('change', (e) => {
+                // Only follow system preference if user hasn't set a preference
+                if (!localStorage.getItem('theme')) {
+                    setTheme(e.matches, false);
+                }
+            });
+
+        // Initialize theme on load
+        initializeTheme();
+
+        // Update copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const menuButton = document.querySelector('button[aria-label="Toggle navigation menu"]');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+            menuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,40 @@
+# Denis Milošević, PhD - Personal Website
+
+## About
+This is the personal website of Denis Milošević, PhD, a research scientist and ML engineer specializing in large-scale AI systems.
+
+## Expertise
+- Machine Learning and AI Systems
+- Computer Vision and Multimodal Architectures
+- Data-intensive Applications
+- Distributed Computing
+- System Architecture
+
+## Research Focus
+- Vision & Multimodal ML: Vision architectures, cross-modal understanding, efficient model design
+- Generative AI: Generative model architectures, cross-modal generation, task-specific adaptation
+- Research-Driven Engineering: Systematic evaluation, data-backed design, performance optimization
+- ML Systems Architecture: End-to-end system design, data pipelines, scalable deployment
+
+## Selected Publications
+1. "Automated Estimation of Chronological Age from Panoramic Dental X-ray Images Using Deep Learning" (2022)
+   - Published in Expert Systems with Applications (Impact Factor: 7.5)
+   - Achieved state-of-the-art accuracy with median error of 2.95 years
+
+2. "A Comprehensive Exploration of Neural Networks for Forensic Analysis of Adult Single Tooth X-ray Images" (2022)
+   - Published in IEEE Access (Impact Factor: 3.4)
+   - Created one of the largest datasets (86,495 annotated teeth)
+
+## Contact
+- LinkedIn: https://www.linkedin.com/in/denmil/
+- Twitter/X: https://x.com/_denmil
+- GitHub: https://github.com/denmil
+- Blog: https://denmil.substack.com
+- Google Scholar: https://scholar.google.com/citations?user=YDJNH6IAAAAJ
+- Bluesky: https://bsky.app/profile/denmil.me
+
+## Website Details
+- URL: https://denmil.me/
+- Technology: Static HTML with Tailwind CSS
+- Features: Dark/light theme toggle, responsive design
+- Last updated: 2025

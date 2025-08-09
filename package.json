@@ -1,0 +1,14 @@
+{
+  "name": "denmil-website",
+  "version": "1.0.0",
+  "description": "Personal website for Denis Milošević",
+  "scripts": {
+    "build-css": "tailwindcss -i ./src/input.css -o ./assets/style.css --minify",
+    "watch-css": "tailwindcss -i ./src/input.css -o ./assets/style.css --watch",
+    "build": "npm run build-css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "tailwindcss": "^3.4.0"
+  }
+}

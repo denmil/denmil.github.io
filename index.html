@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <!-- Hello! If you are reading this, you might be... concerned about the quality of this HTML and the practices. I am aware! Fixing it is on my TODO :D -->
 
@@ -7,8 +7,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Denis Milošević, PhD - ML Research and Production AI Systems">
     <title>Denis Milošević, PhD - Research Scientist</title>
+    
+    <!-- Early theme application to prevent flash -->
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem("theme");
+                var isDark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+                document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+            } catch (e) {}
+        })();
+    </script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://denmil.me/" />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://denmil.me/" />
+    <meta property="og:title" content="Denis Milošević, PhD — Research Scientist" />
+    <meta property="og:description" content="Bridging ML research advances and production-scale AI systems" />
+    <meta property="og:image" content="https://denmil.me/profile-image.png" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@_denmil" />
+    <meta name="twitter:title" content="Denis Milošević, PhD — Research Scientist" />
+    <meta name="twitter:description" content="Bridging ML research advances and production-scale AI systems" />
+    <meta name="twitter:image" content="https://denmil.me/profile-image.png" />
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1F1815" media="(prefers-color-scheme: dark)" />
+    
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png" />
+    
+    <!-- Preconnect to Tailwind CDN -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="shortcut icon" href="favicon.ico">
+    
+    <!-- JSON-LD: Person -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Denis Milošević",
+        "honorificSuffix": "PhD",
+        "jobTitle": "Research Scientist",
+        "url": "https://denmil.me/",
+        "image": "https://denmil.me/profile-image.png",
+        "description": "Research scientist and ML engineer specializing in large-scale AI systems.",
+        "sameAs": [
+            "https://scholar.google.com/citations?user=YDJNH6IAAAAJ",
+            "https://github.com/denmil",
+            "https://www.linkedin.com/in/denmil/",
+            "https://x.com/_denmil",
+            "https://bsky.app/profile/denmil.me",
+            "https://denmil.substack.com"
+        ],
+        "knowsAbout": [
+            "Machine Learning",
+            "Computer Vision",
+            "Multimodal Models",
+            "Generative AI",
+            "Distributed Systems"
+        ]
+    }
+    </script>
+    
+    <!-- JSON-LD: Selected papers -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "ScholarlyArticle",
+                "name": "Automated Estimation of Chronological Age from Panoramic Dental X-ray Images Using Deep Learning",
+                "author": "Denis Milošević",
+                "datePublished": "2022",
+                "url": "https://www.sciencedirect.com/science/article/abs/pii/S095741742101383X",
+                "isPartOf": {
+                    "@type": "Periodical",
+                    "name": "Expert Systems with Applications"
+                }
+            },
+            {
+                "@type": "ScholarlyArticle",
+                "name": "A Comprehensive Exploration of Neural Networks for Forensic Analysis of Adult Single Tooth X-ray Images",
+                "author": "Denis Milošević",
+                "datePublished": "2022",
+                "url": "https://ieeexplore.ieee.org/abstract/document/9813689",
+                "isPartOf": {
+                    "@type": "Periodical",
+                    "name": "IEEE Access"
+                }
+            }
+        ]
+    }
+    </script>
     <style>
         /* Light mode colors (default) */
         :root {
@@ -44,7 +143,7 @@
         }
 
         /* Dark mode class-based override */
-        [data-theme="dark"] {
+        html[data-theme="dark"] {
             /* Base Colors */
             --color-bg-primary: rgb(31, 24, 21);
             --color-bg-secondary: rgb(42, 33, 29);
@@ -76,6 +175,15 @@
             --box-border-hover: rgb(196, 167, 141);
         }
                 
+        /* Color scheme declaration for built-in form controls */
+        :root {
+            color-scheme: light;
+        }
+        
+        html[data-theme="dark"] {
+            color-scheme: dark;
+        }
+        
         .grid-pattern {
             background-color: var(--color-bg-secondary);
             background-image: radial-gradient(circle, var(--color-dots) 1.582px, transparent 1.582px);
@@ -87,7 +195,7 @@
         }
         
         .hover-lift {
-            @apply transition-all duration-200 ease-in-out;
+            transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
         }
         
         .hover-lift:hover {
@@ -97,7 +205,7 @@
         
         .accent-border-left {
             border-left: 3px solid var(--box-border-default);
-            @apply transition-colors duration-200;
+            transition: border-color 200ms ease-in-out, background-color 200ms ease-in-out;
         }
         
         .accent-border-left:hover {
@@ -135,7 +243,7 @@
         }
 
         .nav-link {
-            @apply transition-colors duration-200;
+            transition: color 200ms ease-in-out;
             color: var(--color-text-secondary);
         }
 
@@ -168,6 +276,58 @@
             box-shadow: var(--shadow-lg);
         }
         
+        /* Backdrop filter prefix for Safari */
+        nav {
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        /* Prefer reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .hover-lift,
+            .research-box,
+            .nav-link,
+            .paper-link,
+            .theme-toggle {
+                transition: none !important;
+                transform: none !important;
+            }
+        }
+        
+        /* Menu button hover */
+        .menu-button:hover {
+            background-color: var(--color-bg-secondary);
+        }
+        
+        /* Screen reader only content */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        .sr-only:focus {
+            position: absolute;
+            width: auto;
+            height: auto;
+            padding: 0.5rem 1rem;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            border: 2px solid var(--color-border);
+            border-radius: 0.375rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+        }
+        
         .theme-toggle svg {
             width: 1.5rem;
             height: 1.5rem;
@@ -185,7 +345,9 @@
         }
     </style>
 </head>
-<body style="background-color: var(--color-bg-primary)" data-theme="light">
+<body style="background-color: var(--color-bg-primary)">
+    <!-- Skip to content link -->
+    <a href="#main" class="sr-only focus:not-sr-only">Skip to content</a>
     <!-- Navigation -->
     <nav class="fixed w-full backdrop-filter backdrop-blur z-50 border-b" 
          style="background-color: var(--color-bg-primary); border-color: var(--color-border)"
@@ -195,10 +357,10 @@
                 <div class="text-xl font-mono" style="color: var(--color-text-primary)">
                     denmil/
                 </div>
-                <button class="md:hidden p-2 rounded-lg" 
-                        style="hover:background-color: var(--color-bg-secondary)" 
+                <button class="md:hidden p-2 rounded-lg menu-button" 
                         aria-label="Toggle navigation menu" 
-                        aria-expanded="false">
+                        aria-expanded="false"
+                        aria-controls="mobile-menu">
                     <svg class="w-6 h-6" style="color: var(--color-text-secondary)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -221,7 +383,7 @@
                 </div>
             </div>
             <!-- Mobile Navigation Menu -->
-            <div class="mobile-menu md:hidden px-4 pb-4">
+            <div id="mobile-menu" class="mobile-menu md:hidden px-4 pb-4">
                 <div class="flex flex-col space-y-4">
                     <a href="https://denmil.substack.com" 
                        target="_blank" 
@@ -242,6 +404,8 @@
         </div>
     </nav>
 
+    <!-- Main Content -->
+    <main id="main">
     <!-- Hero Section -->
     <section class="section pt-32 pb-20 grid-pattern" role="banner">
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
@@ -259,8 +423,12 @@
                 <div class="col-span-12 md:col-span-3">
                     <div class="relative profile-image-container">
                         <img src="profile-image.png" 
-                             alt="Profile image" 
-                             class="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg">
+                             alt="Portrait of Denis Milošević" 
+                             width="640"
+                             height="640"
+                             class="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg"
+                             decoding="async"
+                             fetchpriority="high">
                         <div class="absolute -inset-4 rounded-lg -z-10" style="border: 1px solid var(--color-border)"></div>
                     </div>
                 </div>
@@ -340,30 +508,32 @@
                     </a>
                 </div>
                 <div class="col-span-12 md:col-span-8 space-y-8">
+                    <article>
                     <a href="https://www.sciencedirect.com/science/article/abs/pii/S095741742101383X" 
                        target="_blank" 
                        rel="noopener noreferrer" 
-                       class="block p-8 rounded-lg paper-link"
-                       aria-label="Read paper: ((PH22))">
+                       class="block p-8 rounded-lg paper-link">
                         <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
                             <h3 class="text-xl font-medium" style="color: var(--color-text-primary)">Automated Estimation of Chronological Age from Panoramic Dental X-ray Images Using Deep Learning</h3>
-                            <span class="text-sm mt-2 sm:mt-0" style="color: var(--color-text-accent)">2022</span>
+                            <time datetime="2022" class="text-sm mt-2 sm:mt-0" style="color: var(--color-text-accent)">2022</time>
                         </div>
                         <p class="mb-2" style="color: var(--color-text-secondary)"><i>Systems with Applications (Impact Factor: 7.5)</i></p>
                         <p style="color: var(--color-text-secondary)">This paper introduces a novel deep learning approach for automated age estimation from panoramic dental X-rays, achieving state-of-the-art accuracy for adult subjects with a median error of just 2.95 years, significantly outperforming established methods, most of which require manual measurements and require no dental damage or alterations.</p>
                     </a>
+                    </article>
+                    <article>
                     <a href="https://ieeexplore.ieee.org/abstract/document/9813689" 
                        target="_blank" 
                        rel="noopener noreferrer" 
-                       class="block p-8 rounded-lg paper-link"
-                       aria-label="Read paper: ((PH23))">
+                       class="block p-8 rounded-lg paper-link">
                         <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
                             <h3 class="text-xl font-medium" style="color: var(--color-text-primary)">A Comprehensive Exploration of Neural Networks for Forensic Analysis of Adult Single Tooth X-ray Images</h3>
-                            <span class="text-sm mt-2 sm:mt-0" style="color: var(--color-text-accent)">2022</span>
+                            <time datetime="2022" class="text-sm mt-2 sm:mt-0" style="color: var(--color-text-accent)">2022</time>
                         </div>
                         <p class="mb-2" style="color: var(--color-text-secondary)"><i>IEEE Access (Impact Factor: 3.4)</i></p>
                         <p style="color: var(--color-text-secondary)">This study presents a comprehensive exploration of deep learning for analyzing individual tooth X-ray images to perform three key forensic tasks - age estimation, sex assessment, and tooth type determination. By creating one of the largest datasets in literature (86,495 annotated teeth), the research resulted in automated models that achieve performance equal or better performance than current manual forensic methods, while being fully automated, and without requiring perfect dental specimens.</p>
                     </a>
+                    </article>
                 </div>
             </div>
         </div>
@@ -404,14 +574,14 @@
                         <p>
                             <a href="https://www.linkedin.com/in/denmil/" 
                             target="_blank" 
-                            rel="noopener noreferrer" 
+                            rel="me noopener noreferrer" 
                             class="nav-link"
                             aria-label="LinkedIn profile (opens in new window)">LinkedIn</a>
                         </p>
                         <p>
                             <a href="https://x.com/_denmil" 
                                target="_blank" 
-                               rel="noopener noreferrer"
+                               rel="me noopener noreferrer"
                                class="nav-link"
                                aria-label="Twitter profile (opens in new window)">@_denmil on 𝕏</a>
                         </p>
@@ -421,6 +591,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" aria-label="Toggle color theme">
@@ -441,27 +612,27 @@
             <nav class="flex flex-wrap justify-center gap-4 sm:gap-6" aria-label="Footer navigation">
                 <a href="https://scholar.google.com/citations?user=YDJNH6IAAAAJ" 
                    target="_blank" 
-                   rel="noopener noreferrer" 
+                   rel="me noopener noreferrer" 
                    class="nav-link"
                    aria-label="Google Scholar profile (opens in new window)">Google Scholar</a>
                 <a href="https://github.com/denmil" 
                    target="_blank" 
-                   rel="noopener noreferrer" 
+                   rel="me noopener noreferrer" 
                    class="nav-link"
                    aria-label="GitHub profile (opens in new window)">GitHub</a>
                 <a href="https://www.linkedin.com/in/denmil/" 
                    target="_blank" 
-                   rel="noopener noreferrer" 
+                   rel="me noopener noreferrer" 
                    class="nav-link"
                    aria-label="LinkedIn profile (opens in new window)">LinkedIn</a>
                 <a href="https://x.com/_denmil" 
                    target="_blank" 
-                   rel="noopener noreferrer" 
+                   rel="me noopener noreferrer" 
                    class="nav-link"
                    aria-label="X/Twitter profile (opens in new window)">X / Twitter</a>
                 <a href="https://bsky.app/profile/denmil.me" 
                    target="_blank" 
-                   rel="noopener noreferrer" 
+                   rel="me noopener noreferrer" 
                    class="nav-link"
                    aria-label="Bluesky profile (opens in new window)">Bluesky</a>
             </nav>
@@ -476,9 +647,13 @@
 
         // Function to set theme
         function setTheme(isDark, savePreference = true) {
-            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
             sunIcon.style.display = isDark ? 'block' : 'none';
             moonIcon.style.display = isDark ? 'none' : 'block';
+            
+            // Update theme-color meta tag
+            var themeMeta = document.querySelector('meta[name="theme-color"]');
+            if (themeMeta) themeMeta.setAttribute('content', isDark ? '#1F1815' : '#ffffff');
             
             // Only save to localStorage if we want to override system preference
             if (savePreference) {
@@ -505,7 +680,7 @@
 
         // Theme toggle click handler
         themeToggle.addEventListener('click', () => {
-            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             setTheme(!isDark);
         });
 
@@ -526,13 +701,28 @@
 
         // Mobile menu toggle
         const menuButton = document.querySelector('button[aria-label="Toggle navigation menu"]');
-        const mobileMenu = document.querySelector('.mobile-menu');
-
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        function closeMenu() {
+            menuButton.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('active');
+        }
+        
         menuButton.addEventListener('click', () => {
             const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-            menuButton.setAttribute('aria-expanded', !isExpanded);
+            menuButton.setAttribute('aria-expanded', String(!isExpanded));
             mobileMenu.classList.toggle('active');
         });
+        
+        // Close menu on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+        
+        // Close menu on link click
+        mobileMenu.querySelectorAll('a').forEach(a => 
+            a.addEventListener('click', closeMenu)
+        );
     </script>
 </body>
 </html>
